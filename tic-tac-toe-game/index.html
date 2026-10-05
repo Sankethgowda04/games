@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #111827, #020617 60%);
+        color: #e2e8f0;
+        font-family: Arial, sans-serif;
+      }
+      .game-shell { text-align: center; }
+      .board {
+        display: grid;
+        grid-template-columns: repeat(3, 120px);
+        gap: 8px;
+        margin: 20px auto;
+      }
+      .cell {
+        width: 120px;
+        height: 120px;
+        background: rgba(15, 23, 42, 0.9);
+        border: 2px solid rgba(56, 189, 248, 0.3);
+        border-radius: 12px;
+        font-size: 3rem;
+        font-weight: bold;
+        color: #f8fafc;
+        cursor: pointer;
+      }
+      .status {
+        font-size: 1.1rem;
+        font-weight: bold;
+        min-height: 28px;
+      }
+      button {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        padding: 10px 18px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game-shell">
+      <h1>Tic-Tac-Toe</h1>
+      <div class="status" id="status">Player X's turn</div>
+      <div class="board" id="board"></div>
+      <button id="restartBtn">Restart</button>
+    </div>
+    <script src="game.js"></script>
+  </body>
+</html>

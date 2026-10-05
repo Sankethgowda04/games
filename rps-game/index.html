@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #111827, #020617 60%);
+        color: #e2e8f0;
+        font-family: Arial, sans-serif;
+      }
+      .game-shell {
+        width: min(90vw, 700px);
+        text-align: center;
+      }
+      .choices {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 20px;
+      }
+      button.choice {
+        width: 120px;
+        padding: 16px 12px;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        background: rgba(56, 189, 248, 0.15);
+        color: #e2e8f0;
+        border: 1px solid rgba(56, 189, 248, 0.25);
+      }
+      .result {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        min-height: 30px;
+      }
+      .score {
+        margin-top: 10px;
+        color: #cbd5e1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game-shell">
+      <h1>Rock Paper Scissors</h1>
+      <div class="choices">
+        <button class="choice" data-choice="rock">✊ Rock</button>
+        <button class="choice" data-choice="paper">✋ Paper</button>
+        <button class="choice" data-choice="scissors">✌️ Scissors</button>
+      </div>
+      <div class="result" id="result">Choose your move</div>
+      <div class="score" id="score">Player: 0 | Computer: 0</div>
+    </div>
+    <script src="game.js"></script>
+  </body>
+</html>

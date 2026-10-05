@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #111827, #020617 60%);
+        color: #e2e8f0;
+        font-family: Arial, sans-serif;
+      }
+      .game-shell { width: min(92vw, 700px); text-align: center; }
+      h1 { margin-bottom: 16px; }
+      canvas {
+        display: block;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        background: #020617;
+        border: 3px solid #38bdf8;
+        border-radius: 12px;
+        box-shadow: 0 12px 30px rgba(56, 189, 248, 0.2);
+      }
+      .hud {
+        display: flex;
+        justify-content: center;
+        gap: 28px;
+        margin-top: 12px;
+        font-weight: bold;
+      }
+      .controls {
+        margin-top: 16px;
+        padding: 10px 14px;
+        border-radius: 10px;
+        background: rgba(56, 189, 248, 0.08);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        font-size: 0.95rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game-shell">
+      <h1>Snake</h1>
+      <canvas id="gameCanvas" width="600" height="600"></canvas>
+      <div class="hud">
+        <span>Score: <strong id="score">0</strong></span>
+      </div>
+      <div class="controls">Arrow keys to move • Avoid walls and yourself</div>
+    </div>
+    <script src="game.js"></script>
+  </body>
+</html>

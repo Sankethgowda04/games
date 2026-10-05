@@ -1,30 +1,19 @@
 # Game Collection
 
-This project contains a small collection of browser games built with HTML5 Canvas and vanilla JavaScript.
+This project contains a small set of browser games built with HTML5 Canvas and vanilla JavaScript.
 
-## Games
+## Available games
 
-### 1. Starter Game
-- Location: `starter-game/index.html`
-- Controls: Arrow keys
-- Goal: Dodge enemies and stay alive
+- Starter Game: `index.html`
+- Pong: `pong-game/index.html`
+- Snake: `snake-game/index.html`
+- Tic-Tac-Toe: `tic-tac-toe-game/index.html`
+- Memory Match: `memory-game/index.html`
+- Rock Paper Scissors: `rps-game/index.html`
 
-### 2. Pong Game
-- Location: `pong-game/index.html`
-- Controls: `W`/`S` for left paddle, `ArrowUp`/`ArrowDown` for right paddle
-- Goal: Score against the opponent
+## How to run
 
-## Run locally
-
-Open any of the game HTML files directly in a browser.
-
-Example:
-
-```bash
-open ./starter-game/index.html
-```
-
-Or use a local server:
+Open any HTML file directly in a browser, or use a simple local server:
 
 ```bash
 python -m http.server 8000
@@ -38,7 +27,7 @@ http://localhost:8000/
 
 ## GitHub Pages
 
-This repo is deployed on GitHub Pages and can be opened online at:
+Live site:
 
 ```text
 https://sankethgowda04.github.io/games/
