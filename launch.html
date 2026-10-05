@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Studio</title>
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: radial-gradient(circle at top, #111827, #020617 60%);
+        color: #e2e8f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        width: min(92vw, 800px);
+        text-align: center;
+      }
+
+      .panel {
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        border-radius: 18px;
+        padding: 32px 24px;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.45);
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2rem, 5vw, 3.2rem);
+      }
+
+      p {
+        margin: 0 0 24px;
+        color: #cbd5e1;
+        line-height: 1.6;
+      }
+
+      button {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 16px 32px;
+        font-size: 1.05rem;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 12px 26px rgba(34, 197, 94, 0.25);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 28px rgba(34, 197, 94, 0.32);
+      }
+
+      .footer {
+        margin-top: 18px;
+        color: #94a3b8;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="panel">
+        <h1>🎮 Game Studio</h1>
+        <p>Press the button below to launch the browser game instantly.</p>
+        <button onclick="window.location.href='index.html'">Play Game</button>
+        <div class="footer">No server required • Open directly in browser</div>
+      </div>
+    </div>
+  </body>
+</html>

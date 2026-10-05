@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Starter</title>
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #0b1020, #121826 50%, #0f172a);
+        color: #e2e8f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .game-shell {
+        width: min(92vw, 1000px);
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 18px 0;
+        letter-spacing: 1px;
+      }
+
+      canvas {
+        display: block;
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+        background: #020617;
+        border: 3px solid #38bdf8;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
+      }
+
+      .hud {
+        display: flex;
+        justify-content: center;
+        gap: 26px;
+        margin-top: 12px;
+        font-size: 1.1rem;
+        font-weight: bold;
+      }
+
+      .controls {
+        margin-top: 16px;
+        padding: 12px 16px;
+        border-radius: 10px;
+        background: rgba(56, 189, 248, 0.08);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        font-size: 0.95rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game-shell">
+      <h1>🎮 Game Starter</h1>
+      <canvas id="gameCanvas" width="960" height="540"></canvas>
+      <div class="hud">
+        <span>Score: <strong id="score">0</strong></span>
+        <span>Lives: <strong id="lives">3</strong></span>
+      </div>
+      <div class="controls">
+        Move with <strong>Arrow Keys</strong> • Avoid the red enemies • Stay alive
+      </div>
+    </div>
+
+    <script>
+      const canvas = document.getElementById('gameCanvas');
+      const ctx = canvas.getContext('2d');
+      const scoreEl = document.getElementById('score');
+      const livesEl = document.getElementById('lives');
+
+      const player = {
+        x: 100,
+        y: 220,
+        width: 28,
+        height: 28,
+        speed: 5,
+        dx: 0,
+        dy: 0,
+      };
+
+      const enemy = {
+        x: canvas.width - 80,
+        y: canvas.height / 2,
+        width: 30,
+        height: 30,
+        speed: 2,
+      };
+
+      let score = 0;
+      let lives = 3;
+      let gameOver = false;
+
+      const keys = {
+        ArrowUp: false,
+        ArrowDown: false,
+        ArrowLeft: false,
+        ArrowRight: false,
+      };
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key in keys) {
+          keys[event.key] = true;
+        }
+      });
+
+      document.addEventListener('keyup', (event) => {
+        if (event.key in keys) {
+          keys[event.key] = false;
+        }
+      });
+
+      function updatePlayer() {
+        player.dx = 0;
+        player.dy = 0;
+
+        if (keys.ArrowUp) player.dy = -player.speed;
+        if (keys.ArrowDown) player.dy = player.speed;
+        if (keys.ArrowLeft) player.dx = -player.speed;
+        if (keys.ArrowRight) player.dx = player.speed;
+
+        player.x += player.dx;
+        player.y += player.dy;
+
+        player.x = Math.max(0, Math.min(canvas.width - player.width, player.x));
+        player.y = Math.max(0, Math.min(canvas.height - player.height, player.y));
+      }
+
+      function updateEnemy() {
+        if (gameOver) return;
+
+        enemy.x -= enemy.speed;
+
+        if (enemy.x < 0) {
+          enemy.x = canvas.width;
+          enemy.y = Math.random() * (canvas.height - enemy.height);
+          score += 10;
+          scoreEl.textContent = score;
+        }
+
+        const hit =
+          player.x < enemy.x + enemy.width &&
+          player.x + player.width > enemy.x &&
+          player.y < enemy.y + enemy.height &&
+          player.y + player.height > enemy.y;
+
+        if (hit) {
+          lives -= 1;
+          livesEl.textContent = lives;
+          enemy.x = canvas.width;
+          enemy.y = Math.random() * (canvas.height - enemy.height);
+
+          if (lives <= 0) {
+            gameOver = true;
+            setTimeout(() => {
+              alert('Game Over! Final Score: ' + score + '\n\nRefresh the page to play again.');
+            }, 100);
+          }
+        }
+      }
+
+      function drawBackground() {
+        ctx.fillStyle = '#0b1120';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.strokeStyle = '#1e293b';
+        for (let x = 0; x < canvas.width; x += 40) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, canvas.height);
+          ctx.stroke();
+        }
+      }
+
+      function drawPlayer() {
+        ctx.fillStyle = '#22c55e';
+        ctx.fillRect(player.x, player.y, player.width, player.height);
+        ctx.fillStyle = '#16a34a';
+        ctx.fillRect(player.x + 2, player.y + 2, player.width - 4, player.height - 4);
+      }
+
+      function drawEnemy() {
+        ctx.fillStyle = '#f87171';
+        ctx.fillRect(enemy.x, enemy.y, enemy.width, enemy.height);
+        ctx.fillStyle = '#dc2626';
+        ctx.fillRect(enemy.x + 2, enemy.y + 2, enemy.width - 4, enemy.height - 4);
+      }
+
+      function loop() {
+        drawBackground();
+        updatePlayer();
+        updateEnemy();
+        drawPlayer();
+        drawEnemy();
+        requestAnimationFrame(loop);
+      }
+
+      loop();
+    </script>
+  </body>
+</html>
